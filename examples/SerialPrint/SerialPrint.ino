@@ -78,28 +78,26 @@ void getTTP229data(byte *a, byte *b)
     if (dataN == 1) *b = c;  
     dataN++;
   }
-  Serial.print("a is: ");
-  Serial.println(*a);
-  Serial.print("b is: ");
-  Serial.println(*b);
+//  Serial.print("a is: ");
+//  Serial.println(*a);
+//  Serial.print("b is: ");
+//  Serial.println(*b);
 }
  
 void showTTP229data()
 {
   byte aa,bb = 0;
   getTTP229data(&aa,&bb);
-  Serial.println("printing aa");
-  printByte(aa);
-  Serial.println();
-  Serial.println("printing bb");
-  printByte(bb);
+//  Serial.println("printing aa");
+//  printByte(aa);
+//  Serial.println();
+//  Serial.println("printing bb");
+//  printByte(bb);
 
   Serial.println();
-  Serial.print("Data: ");
   printByte(aa);
   printByte(bb);
  
-  Serial.println(";");
   delay(1000);
 }
  

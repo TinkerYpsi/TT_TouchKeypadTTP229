@@ -1,10 +1,13 @@
-#include "Arduino.h"
-#include "Wire.h"
+#include <Arduino.h>
+#include <Wire.h>
 #include "TTP299_touch_keypad.h"
 
 // 0x57 is device address
 // the addressing without the R/W bit -> 01010111 = 57
 #define TTP229_LSF 0x57
+
+TTP299_touch_keypad::TTP299_touch_keypad() { }
+TTP299_touch_keypad::~TTP299_touch_keypad() { }
 
 void TTP299_touch_keypad::getTTP229data(byte *a, byte *b) {
   Wire.begin();

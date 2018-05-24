@@ -48,13 +48,17 @@
 #ifndef TTP299_touch_keypad_h
 #define TTP299_touch_keypad_h
 
-#include "Arduino.h"
+#include <Arduino.h>
+#include <Wire.h>
 
 class TTP299_touch_keypad {
 public:
+  TTP299_touch_keypad();
+  ~TTP299_touch_keypad();
+
   // prints capacitive keys pressed to Serial monitor in form of bits
   // i.e. 2,5 and 13 pressed on a 16-key keypad would result in: 0100100000001000
-  void showTTP229data();
+  void printData();
 
 private:
   void getTTP229data(byte *a, byte *b);
