@@ -38,33 +38,76 @@ void TTP299_touch_keypad::printData() {
 }
 
 void TTP299_touch_keypad::setPassword() {
+  Serial.println("NOTE: Keep fingers pressed down on keys for the most accurate results");
+  delay(2000);
+  Serial.println("Ready...");
+  delay(500);
+  Serial.println("On your marks...");
+  delay(500);
   Serial.print("Enter password... ");
-  delay(1000);
-  // TODO: do prelim pword check to reduce errors from bad reading
-  Serial.println("(hold for a few more seconds)");
-  delay(1000);
-  // TODO: add another pword check to reduce errors
+  delay(500);
   byte aa,bb = 0;
-
   // get the first and second half of the password as two bytes
   getTTP229data(&aa, &bb);
 
-  _password[0] = (int) aa;
-  _password[1] = (int) bb;
+  int password1[2];
+  password1[0] = (int) aa;
+  password1[1] = (int) bb;
 
-  _firstHalf = aa;
-  _secondHalf = bb;
+  Serial.println("(hold for a few more seconds)");
+  delay(500);
 
-  Serial.print("Your password is: ");
-  printByte(aa);
-  printByte(bb);
-  delay(1000);
+  aa,bb = 0;
+  getTTP229data(&aa, &bb);
+  int password2[2];
+  password2[0] = (int) aa;
+  password2[1] = (int) bb;
+  delay(500);
+
+  aa,bb = 0;
+  getTTP229data(&aa, &bb);
+  int password3[2];
+  password3[0] = (int) aa;
+  password3[1] = (int) bb;
+
+  bool password_reset;
+  if(password1[0] == password2[0] && password2[0] == password3[0]) {
+    if(password1[1] == password2[1] && password2[1] == password3[1]) {
+      // a password was previously failed to be set
+      if(_password[0] = 0 && _password[1] == 0) {
+        password_reset = true;
+      }
+      _password[0] = (int) aa;
+      _password[1] = (int) bb;
+      _firstHalf = aa;
+      _secondHalf = bb;
+      Serial.print("Your password is: ");
+      printByte(aa);
+      printByte(bb);
+      Serial.println();
+      if(password_reset) {
+        delay(500);
+        Serial.println("Returning to password check... ");
+        delay(500);
+        return;
+      }
+      delay(1000);
+    }
+  }
+  else {
+    Serial.println("Sorry! I didn't quite catch that.");
+    delay(1000);
+    Serial.println("Retrying...");
+    Serial.println();
+    setPassword();
+  }
 }
 
 bool TTP299_touch_keypad::checkPassword(int debug) {
-  if(_password[0] == -100 && _password[1] == -100) {
-    Serial.println("You haven't set a password yet!");
-    return false;
+  if(_password[0] == 0 && _password[1] == 0) {
+    Serial.println("You haven't pressed anything!");
+    Serial.println("Retrying... ");
+    setPassword();
   }
 
   Serial.println("Please enter the password: ");
@@ -76,7 +119,7 @@ bool TTP299_touch_keypad::checkPassword(int debug) {
   int password[2];
   password[0] = (int) aa;
   password[1] = (int) bb;
-  
+
   if(password[0] == _password[0] && password[1] == _password[1]) {
     Serial.println("Correct!");
     return true;
@@ -86,6 +129,7 @@ bool TTP299_touch_keypad::checkPassword(int debug) {
     Serial.println("You entered: ");
     printByte(aa);
     printByte(bb);
+    Serial.println();
 
     if(debug == 1) {
       Serial.println();
@@ -94,16 +138,17 @@ bool TTP299_touch_keypad::checkPassword(int debug) {
       printByte(_secondHalf);
       Serial.println();
 
-      Serial.print("your password ints: ");
-      Serial.print(password[0]);
-      Serial.print(" , ");
-      Serial.println(password[1]);
-
-      Serial.println();
-      Serial.print("correct password ints: ");
-      Serial.print(_password[0]);
-      Serial.print(" , ");
-      Serial.println(_password[1]);
+      // uncomment code below to see your password represented as two ints
+      // Serial.print("your password ints: ");
+      // Serial.print(password[0]);
+      // Serial.print(" , ");
+      // Serial.println(password[1]);
+      //
+      // Serial.println();
+      // Serial.print("correct password ints: ");
+      // Serial.print(_password[0]);
+      // Serial.print(" , ");
+      // Serial.println(_password[1]);
       delay(3000);
     }
     return false;
