@@ -22,7 +22,7 @@ void TTP299_touch_keypad::getTTP229data(byte *a, byte *b) {
 }
 
 // NOTE: still need to Serial.begin() in Arduino IDE
-void TTP299_touch_keypad::showTTP229data() {
+void TTP299_touch_keypad::printData() {
   byte aa,bb = 0;
   getTTP229data(&aa, &bb);
   printByte(aa);

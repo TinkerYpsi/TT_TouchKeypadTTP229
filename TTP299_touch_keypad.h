@@ -53,7 +53,7 @@
 class TTP299_touch_keypad {
 public:
   // prints capacitive keys pressed to Serial monitor in form of bits
-  // i.e. 2,5 and 13 pressed on a 15 key keypad would result in: 010010000000100
+  // i.e. 2,5 and 13 pressed on a 16-key keypad would result in: 0100100000001000
   void showTTP229data();
 
 private:
