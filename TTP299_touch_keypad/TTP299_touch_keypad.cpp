@@ -30,6 +30,7 @@ void TTP299_touch_keypad::printData() {
   getTTP229data(&aa, &bb);
   printByte(aa);
   printByte(bb);
+  Serial.println();
   delay(1000);
 }
 
