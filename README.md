@@ -9,7 +9,7 @@ Written by Patrick Neggie <patmn@umich.edu>, 2018
 Installation
 ------------
 
-Place the [TTP299_touch_keypad][download] library folder in your `<arduinosketchfolder>/libraries/` folder. You may need to create the `libraries` subfolder if its your first library. Restart the Arduino IDE.
+Clone this GitHub repository and place the `TTP299_touch_keypad` library folder in your `<arduinosketchfolder>/libraries/` folder. You may need to create the `libraries` subfolder if its your first library. Restart the Arduino IDE.
 
 
 Features
@@ -20,4 +20,4 @@ Features
 Usage
 -----
 
-Read the .h file for instructions on how to use each of the functions. Check out our [examples][examples] to get some inspiration.
+Read the .h file for instructions on how to use each of the functions. Check out our examples to get some inspiration.
