@@ -10,7 +10,7 @@ void setup() {
 }
 
 void loop() {
-  if(touchpad.checkPassword(1)) {
+  if(touchpad.checkPassword()) {
     Serial.println("WHOA IT WORKS!!!");
   }
 }
