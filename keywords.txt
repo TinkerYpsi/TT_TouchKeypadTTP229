@@ -1,2 +1,4 @@
 TTP299_touch_keypad	KEYWORD1
 printData		KEYWORD2
+setPassword	KEYWORD2
+checkPassword	KEYWORD2

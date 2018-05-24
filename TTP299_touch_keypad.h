@@ -53,6 +53,7 @@
 
 class TTP299_touch_keypad {
 public:
+  // constructor and destructor are here to avoid Arduino compile errors
   TTP299_touch_keypad();
   ~TTP299_touch_keypad();
 
@@ -60,9 +61,17 @@ public:
   // i.e. 2,5 and 13 pressed on a 16-key keypad would result in: 0100100000001000
   void printData();
 
+  void setPassword();
+
+  bool checkPassword(int debug = 0);
+
 private:
   void getTTP229data(byte *a, byte *b);
   void printByte(byte &b);
+
+  byte _firstHalf;
+  byte _secondHalf;
+  int _password[2];
 };
 
 #endif
