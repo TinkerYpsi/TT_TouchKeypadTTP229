@@ -74,6 +74,9 @@ bool TTP299_touch_keypad::checkPassword(int debug) {
   getTTP229data(&aa, &bb);
 
   int password[2];
+  password[0] = (int) aa;
+  password[1] = (int) bb;
+  
   if(password[0] == _password[0] && password[1] == _password[1]) {
     Serial.println("Correct!");
     return true;
@@ -85,9 +88,23 @@ bool TTP299_touch_keypad::checkPassword(int debug) {
     printByte(bb);
 
     if(debug == 1) {
+      Serial.println();
       Serial.println("The correct password is: ");
       printByte(_firstHalf);
       printByte(_secondHalf);
+      Serial.println();
+
+      Serial.print("your password ints: ");
+      Serial.print(password[0]);
+      Serial.print(" , ");
+      Serial.println(password[1]);
+
+      Serial.println();
+      Serial.print("correct password ints: ");
+      Serial.print(_password[0]);
+      Serial.print(" , ");
+      Serial.println(_password[1]);
+      delay(3000);
     }
     return false;
   }

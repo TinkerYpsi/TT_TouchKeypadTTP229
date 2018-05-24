@@ -13,7 +13,4 @@ void loop() {
   if(touchpad.checkPassword(1)) {
     Serial.println("WHOA IT WORKS!!!");
   }
-  else {
-    Serial.println("Better luck next time!");
-  }
 }
