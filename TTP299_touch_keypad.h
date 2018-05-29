@@ -61,8 +61,13 @@ public:
   // i.e. 2,5 and 13 pressed on a 16-key keypad would result in: 0100100000001000
   void printData();
 
+  // captures password through pressing of keys
+  // can press down any combination of keys to form password
+  // open Serial monitor for optimal user experience
   void setPassword();
 
+  // returns whether or not current keys pressed are the same as password
+  // if debug == 1, user is prompted with correct password & incorrect password they entered
   bool checkPassword(int debug = 0);
 
 private:
