@@ -1,7 +1,7 @@
 #include <Wire.h>
-#include <TTP299_touch_keypad.h>
+#include <TT_TouchKeypadTTP229.h>
 
-TTP299_touch_keypad touchpad;
+TT_TouchKeypadTTP229 touchpad;
 int password[2];
 
 void setup() {

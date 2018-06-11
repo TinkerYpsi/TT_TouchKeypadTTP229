@@ -45,17 +45,17 @@
 
 //////////////////////////////////////////////////////////////////
 
-#ifndef TTP299_touch_keypad_h
-#define TTP299_touch_keypad_h
+#ifndef TT_TouchKeypadTTP229_h
+#define TT_TouchKeypadTTP229_h
 
 #include <Arduino.h>
 #include <Wire.h>
 
-class TTP299_touch_keypad {
+class TT_TouchKeypadTTP229 {
 public:
   // constructor and destructor are here to avoid Arduino compile errors
-  TTP299_touch_keypad();
-  ~TTP299_touch_keypad();
+  TT_TouchKeypadTTP229();
+  ~TT_TouchKeypadTTP229();
 
   // prints capacitive keys pressed to Serial monitor in form of bits
   // i.e. 2,5 and 13 pressed on a 16-key keypad would result in: 0100100000001000
