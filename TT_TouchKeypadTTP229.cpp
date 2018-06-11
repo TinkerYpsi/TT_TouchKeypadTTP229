@@ -1,18 +1,18 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "TTP299_touch_keypad.h"
+#include "TT_TouchKeypadTTP229.h"
 
 // 0x57 is device address
 // the addressing without the R/W bit -> 01010111 = 57
 #define TTP229_LSF 0x57
 
-TTP299_touch_keypad::TTP299_touch_keypad() {
+TT_TouchKeypadTTP229::TT_TouchKeypadTTP229() {
   _password[0] = -100;
   _password[1] = -100;
 }
-TTP299_touch_keypad::~TTP299_touch_keypad() { }
+TT_TouchKeypadTTP229::~TT_TouchKeypadTTP229() { }
 
-void TTP299_touch_keypad::getTTP229data(byte *a, byte *b) {
+void TT_TouchKeypadTTP229::getTTP229data(byte *a, byte *b) {
   Wire.begin();
   // request 2 bytes from slave device TTP229
   Wire.requestFrom(TTP229_LSF, 2);
@@ -28,7 +28,7 @@ void TTP299_touch_keypad::getTTP229data(byte *a, byte *b) {
 }
 
 // NOTE: still need to Serial.begin() in Arduino IDE
-void TTP299_touch_keypad::printData() {
+void TT_TouchKeypadTTP229::printData() {
   byte aa,bb = 0;
   getTTP229data(&aa, &bb);
   printByte(aa);
@@ -37,7 +37,7 @@ void TTP299_touch_keypad::printData() {
   delay(1000);
 }
 
-void TTP299_touch_keypad::setPassword() {
+void TT_TouchKeypadTTP229::setPassword() {
   Serial.println("NOTE: Keep fingers pressed down on keys for the most accurate results");
   delay(2000);
   Serial.println("Ready...");
@@ -103,7 +103,7 @@ void TTP299_touch_keypad::setPassword() {
   }
 }
 
-bool TTP299_touch_keypad::checkPassword(int debug) {
+bool TT_TouchKeypadTTP229::checkPassword(int debug) {
   if(_password[0] == 0 && _password[1] == 0) {
     Serial.println("You haven't pressed anything!");
     Serial.println("Retrying... ");
@@ -155,7 +155,7 @@ bool TTP299_touch_keypad::checkPassword(int debug) {
   }
 }
 
-void TTP299_touch_keypad::printByte(byte &b) {
+void TT_TouchKeypadTTP229::printByte(byte &b) {
   for(unsigned int mask = 0x80; mask; mask >>= 1) {
     if(mask & b) {
       Serial.print('1');

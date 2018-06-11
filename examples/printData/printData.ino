@@ -1,9 +1,9 @@
-#include <TTP299_touch_keypad.h>
+#include <TT_TouchKeypadTTP229.h>
 
 #include <Wire.h>
 
-TTP299_touch_keypad touchpad;
-  
+TT_TouchKeypadTTP229 touchpad;
+
 void setup() {
   Serial.begin(9600);
 }
@@ -11,4 +11,3 @@ void setup() {
 void loop() {
   touchpad.printData();
 }
-
