@@ -4,8 +4,6 @@ Written by *Patrick Neggie*, 2018 <<patmn@umich.edu>>
 An Arduino library for controlling a 15 and 16 capacitive touch key pad and disk pads (model TTP229).
 Tested with the Robotdyn I2C Capacitive Touch Module, Robotdyn Capacitive Touch Disk Pad, and Robotdyn Capacitive Touch Keypad
 
-Written by Patrick Neggie <<patmn@umich.edu>>, 2018
-
 
 Installation
 ------------
