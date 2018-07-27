@@ -10,11 +10,5 @@ void setup() {
 }
 
 void loop() {
-  if(touchpad.checkPassword()) {
-    Serial.println("CORRECT!");
-  }
-  else {
-    Serial.println("Try again!");
-  }
-  delay(2000);
+  touchpad.checkPassword();
 }
