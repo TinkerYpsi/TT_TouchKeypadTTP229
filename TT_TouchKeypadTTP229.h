@@ -70,6 +70,12 @@ public:
   // if debug == 1, user is prompted with correct password & incorrect password they entered
   bool checkPassword(int debug = 0);
 
+  // returns false if nobody is pressing the Touchpad
+  // returns true if someone is pressing the keys
+  bool hasInput();
+
+  void getKeys(byte *aa, byte *bb);
+
 private:
   void getTTP229data(byte *a, byte *b);
   void printByte(byte &b);

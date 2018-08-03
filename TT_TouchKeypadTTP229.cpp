@@ -37,6 +37,27 @@ void TT_TouchKeypadTTP229::printData() {
   delay(1000);
 }
 
+bool TT_TouchKeypadTTP229::hasInput() {
+  byte aa,bb = 0;
+  // get the first and second half of the password as two bytes
+  getTTP229data(&aa, &bb);
+
+  int password1[2];
+  password1[0] = (int) aa;
+  password1[1] = (int) bb;
+
+  // user did not enter anything
+  if(password1[0] == 0 && password1[1] == 0)
+  {
+    return false;
+  }
+  return true;
+}
+
+void TT_TouchKeypadTTP229::getKeys(byte *aa, byte *bb) {
+  getTTP229data(aa, bb);
+}
+
 void TT_TouchKeypadTTP229::setPassword() {
   // Serial.println("NOTE: Keep fingers pressed down on keys for the most accurate results");
   // delay(2000);
